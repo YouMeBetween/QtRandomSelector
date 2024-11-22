@@ -21,7 +21,6 @@ public:
 
 private:
     Ui::MainWindow *ui;
-    QVector<QString> getItem();
     QString choose(QVector<QString> *item);
 };
 #endif // MAINWINDOW_H
