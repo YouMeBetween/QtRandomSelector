@@ -1,9 +1,8 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "inc/items.h"
+#include <QString>
 #include <QDebug>
-#include <QFile>
-#include <QRandomGenerator>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
