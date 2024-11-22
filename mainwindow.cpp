@@ -19,8 +19,3 @@ MainWindow::~MainWindow()
 {
     delete ui;
 }
-
-QString MainWindow::choose(QVector<QString> *item)
-{
-    return item->at(QRandomGenerator::global()->bounded(item->size()));
-}
