@@ -2,10 +2,36 @@
 #include <QFile>
 #include <QDebug>
 #include <QRandomGenerator>
+#include <QDir>
 
-CItems::CItems(QString file_dir, QWidget *parent) : QWidget(parent)
+void CItems::adjustWeights(int choice)
 {
-    QFile csv_data(file_dir);
+    items[choice].weight /= 2;
+    if (items.at(choice).weight <= 2) {
+        for (auto iter = items.begin(); iter != items.end(); iter++) {
+            iter->weight *= 2;
+        }
+    }
+}
+
+void CItems::writeCsv()
+{
+    QFile csv_data("../QtRandomSelector/cfg/cfg.csv");
+    if (!csv_data.open(QIODevice::WriteOnly | QIODevice::Text)) {
+        qDebug() << tr("Unable to open fiile.\n");
+        return;
+    }
+    QTextStream out(&csv_data);
+    out << "项目,权重\n";
+    for (auto iter = items.begin(); iter != items.end(); iter++) {
+        out << iter->name << "," << iter->weight << "\n";
+    }
+    csv_data.close();
+}
+
+CItems::CItems(QWidget *parent) : QWidget(parent)
+{
+    QFile csv_data("../QtRandomSelector/cfg/cfg.csv");
     QString line;
     QStringList words;
     Item temp;
@@ -31,7 +57,8 @@ QVector<Item> CItems::getItems()
 
 QString CItems::chooseOne()
 {
-    double total_weight = 0.0, choice = 0.0;
+    double total_weight = 0.0, random_result = 0.0;
+    int choice = -1;
     QVector<double> weight;
     for (auto iter = items.begin(); iter != items.end(); iter++) {
         total_weight += iter->weight;
@@ -44,11 +71,14 @@ QString CItems::chooseOne()
         weight.push_back(iter->weight + weight.back());
     }
     weight.erase(weight.cbegin());
-    choice = QRandomGenerator::global()->bounded(weight.back());
+    random_result = QRandomGenerator::global()->bounded(weight.back());
     for (auto iter = weight.begin(); iter != weight.end(); iter++) {
-        if (choice < *iter){
-            return items.at(std::distance(weight.begin(), iter)).name;
+        if (random_result < *iter){
+            choice = std::distance(weight.begin(), iter);
+            break;
         }
     }
-    return items.back().name;
+    this->adjustWeights(choice);
+    this->writeCsv();
+    return items.at(choice).name;
 }

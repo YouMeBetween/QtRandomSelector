@@ -1,5 +1,1 @@
-<RCC>
-    <qresource prefix="/config">
-        <file>config/cfg.csv</file>
-    </qresource>
-</RCC>
+<RCC/>

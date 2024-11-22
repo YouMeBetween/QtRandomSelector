@@ -10,7 +10,7 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    CItems items(":config/config/cfg.csv");
+    CItems items;
     QString result = items.chooseOne();
     qDebug() << result;
 }

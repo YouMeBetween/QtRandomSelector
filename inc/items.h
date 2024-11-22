@@ -17,9 +17,11 @@ class CItems : public QWidget
 
 private:
     QVector<Item> items;
+    void adjustWeights(int choice);
+    void writeCsv();
 
 public:
-    CItems(QString file_dir, QWidget *parent = 0);
+    CItems(QWidget *parent = 0);
     QVector<Item> getItems();
     QString chooseOne();
 };
