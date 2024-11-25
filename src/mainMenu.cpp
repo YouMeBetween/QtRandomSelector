@@ -3,7 +3,7 @@
 #include "ui_mainMenu.h"
 
 CMainMenu::CMainMenu(QWidget *parent)
-    : QWidget(parent)
+    : CInterfaceBase(parent)
     , ui(new Ui::mainMenu)
 {
     ui->setupUi(this);

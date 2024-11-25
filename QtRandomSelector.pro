@@ -11,10 +11,12 @@ CONFIG += c++17
 SOURCES += \
     main.cpp \
     mainwindow.cpp \
+    src/interfaceBase.cpp \
     src/items.cpp \
     src/mainMenu.cpp
 
 HEADERS += \
+    inc/interfaceBase.h \
     inc/items.h \
     inc/mainMenu.h \
     mainwindow.h
