@@ -19,5 +19,9 @@ public:
 
 private:
     Ui::MainWindow *ui;
+
+private slots:
+    void toMainMenu();
+    void toResultShow(QString result);
 };
 #endif // MAINWINDOW_H

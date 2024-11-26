@@ -1,4 +1,5 @@
 #include "../inc/mainMenu.h"
+#include "../inc/resultShow.h"
 #include "../inc/items.h"
 #include "ui_mainMenu.h"
 
@@ -20,8 +21,8 @@ CMainMenu::~CMainMenu()
 void CMainMenu::startChoose()
 {
     CItems items;
-    QString result = items.chooseOne();
-    qDebug() << result;
+    emit toResultShow(items.chooseOne());
+    close();
 }
 
 void CMainMenu::quit()

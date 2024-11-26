@@ -13,17 +13,20 @@ SOURCES += \
     mainwindow.cpp \
     src/interfaceBase.cpp \
     src/items.cpp \
-    src/mainMenu.cpp
+    src/mainMenu.cpp \
+    src/resultShow.cpp
 
 HEADERS += \
     inc/interfaceBase.h \
     inc/items.h \
     inc/mainMenu.h \
+    inc/resultShow.h \
     mainwindow.h
 
 FORMS += \
     mainwindow.ui \
-    ui/mainMenu.ui
+    ui/mainMenu.ui \
+    ui/resultShow.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
