@@ -14,13 +14,15 @@ SOURCES += \
     src/interfaceBase.cpp \
     src/items.cpp \
     src/mainMenu.cpp \
-    src/resultShow.cpp
+    src/resultShow.cpp \
+    src/switchButton.cpp
 
 HEADERS += \
     inc/interfaceBase.h \
     inc/items.h \
     inc/mainMenu.h \
     inc/resultShow.h \
+    inc/switchButton.h \
     mainwindow.h
 
 FORMS += \
