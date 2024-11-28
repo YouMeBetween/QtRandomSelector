@@ -23,7 +23,11 @@ void SwitchButton::setSwitch(bool onOff)
     /* 动画-背景颜色 */
     QPropertyAnimation *colorAnimation = new QPropertyAnimation(this, "pBackColor");
     colorAnimation->setDuration(mAnimationPeriod);
-    colorAnimation->setStartValue(mBackColor);
+    if (mBackColor != Qt::red) {
+        colorAnimation->setStartValue(mBackColor);
+    } else {
+        colorAnimation->setStartValue(mOnOff ? mBackOnColor : mBackOffColor);
+    }
     colorAnimation->setEndValue(mOnOff ? mBackOnColor : mBackOffColor);
     colorAnimation->start(QAbstractAnimation::DeletionPolicy::DeleteWhenStopped);   /* 停止后删除 */
     /* 动画-开关按钮位置 */
@@ -63,7 +67,11 @@ void SwitchButton::setSwitchForWaitModel(bool onOff)
     /* 后运行背景颜色动画 */
     QPropertyAnimation *colorAnimation = new QPropertyAnimation(this, "pBackColor");
     colorAnimation->setDuration(mAnimationPeriod);
-    colorAnimation->setStartValue(mBackColor);
+    if (mBackColor != Qt::red) {
+        colorAnimation->setStartValue(mBackColor);
+    } else {
+        colorAnimation->setStartValue(mOnOff ? mBackOnColor : mBackOffColor);
+    }
     colorAnimation->setEndValue(mOnOff ? mBackOnColor : mBackOffColor);
     colorAnimation->start(QAbstractAnimation::DeletionPolicy::DeleteWhenStopped);   /* 停止后删除 */
     connect(colorAnimation, &QPropertyAnimation::valueChanged, this, [=]() {
