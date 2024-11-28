@@ -23,9 +23,11 @@ private:
 signals:
     void quitSignal();
     void toResultShow(QString result);
+    void toSetting();
 
 private slots:
     void startChoose();
+    void settingClicked();
     void quit();
 };
 

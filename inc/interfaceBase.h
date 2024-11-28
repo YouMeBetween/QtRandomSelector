@@ -9,6 +9,10 @@ class CInterfaceBase : public QWidget
 
 public:
     CInterfaceBase(QWidget *parent = nullptr);
+
+protected:
+    QString getItem(QString path, QString key);
+    void setItem(QString path, QString key, QString value);
 };
 
 #endif // _INTERFACE_BASE_H_

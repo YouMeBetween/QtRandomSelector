@@ -15,20 +15,24 @@ SOURCES += \
     src/items.cpp \
     src/mainMenu.cpp \
     src/resultShow.cpp \
+    src/setting.cpp \
     src/switchButton.cpp
 
 HEADERS += \
+    inc/filePath.h \
     inc/interfaceBase.h \
     inc/items.h \
     inc/mainMenu.h \
     inc/resultShow.h \
+    inc/setting.h \
     inc/switchButton.h \
     mainwindow.h
 
 FORMS += \
     mainwindow.ui \
     ui/mainMenu.ui \
-    ui/resultShow.ui
+    ui/resultShow.ui \
+    ui/setting.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
@@ -38,4 +42,5 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 RESOURCES +=
 
 DISTFILES += \
-    cfg/cfg.csv
+    cfg/cfg.csv \
+    cfg/setting.json

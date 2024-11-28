@@ -76,6 +76,25 @@
     </widget>
    </item>
    <item alignment="Qt::AlignHCenter">
+    <widget class="QPushButton" name="qSettingPushButton">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="layoutDirection">
+      <enum>Qt::LeftToRight</enum>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">font: 10pt &quot;思源黑体 CN&quot;;</string>
+     </property>
+     <property name="text">
+      <string>Setting</string>
+     </property>
+    </widget>
+   </item>
+   <item alignment="Qt::AlignHCenter">
     <widget class="QPushButton" name="quit">
      <property name="styleSheet">
       <string notr="true">font: 10pt &quot;思源黑体 CN&quot;;</string>

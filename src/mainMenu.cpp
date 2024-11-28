@@ -10,6 +10,7 @@ CMainMenu::CMainMenu(QWidget *parent)
     ui->setupUi(this);
 
     connect(ui->start, &QPushButton::clicked, this, &CMainMenu::startChoose);
+    connect(ui->qSettingPushButton, &QPushButton::clicked, this, &CMainMenu::settingClicked);
     connect(ui->quit, &QPushButton::clicked, this, &CMainMenu::quit);
 }
 
@@ -22,6 +23,12 @@ void CMainMenu::startChoose()
 {
     CItems items;
     emit toResultShow(items.chooseOne());
+    close();
+}
+
+void CMainMenu::settingClicked()
+{
+    emit toSetting();
     close();
 }
 

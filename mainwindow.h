@@ -23,5 +23,6 @@ private:
 private slots:
     void toMainMenu();
     void toResultShow(QString result);
+    void toSetting();
 };
 #endif // MAINWINDOW_H
