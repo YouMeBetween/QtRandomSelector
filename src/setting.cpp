@@ -10,8 +10,8 @@ CSetting::CSetting(QWidget *parent)
 
     connect(ui->qOKPushButton, &QPushButton::clicked, this, &CSetting::OKClicked);
 
-    weightSelect = getItem(SETTING_JSON_PATH, "weightSelect") == "true" ? true : false;
-    dynamicWeight = getItem(SETTING_JSON_PATH, "dynamicWeight") == "true" ? true : false;
+    weightSelect = getItem(SETTING_JSON_PATH, "weightSelect") == "true";
+    dynamicWeight = getItem(SETTING_JSON_PATH, "dynamicWeight") == "true";
 
     ui->qWeightSelectSwitchButton->setSwitch(weightSelect);
     ui->qDynamicWeightSwitchButton->setSwitch(dynamicWeight);
