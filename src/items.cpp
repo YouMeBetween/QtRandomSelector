@@ -1,4 +1,5 @@
 #include "../inc/items.h"
+#include "../inc/filePath.h"
 #include <QFile>
 #include <QDebug>
 #include <QRandomGenerator>
@@ -29,7 +30,7 @@ void CItems::writeCsv()
     csv_data.close();
 }
 
-CItems::CItems(QWidget *parent) : QWidget(parent)
+CItems::CItems(QWidget *parent) : CInterfaceBase(parent)
 {
     QFile csv_data("../QtRandomSelector/cfg/cfg.csv");
     QString line;
@@ -57,18 +58,27 @@ QVector<Item> CItems::getItems()
 
 QString CItems::chooseOne()
 {
-    double total_weight = 0.0, random_result = 0.0;
+    double random_result = 0.0;
     int choice = -1;
+    bool is_weight_select = getItem(SETTING_JSON_PATH, "weightSelect") == "true";
+    bool is_dynamic_weight = getItem(SETTING_JSON_PATH, "dynamicWeight") == "true";
     QVector<double> weight;
-    for (auto iter = items.begin(); iter != items.end(); iter++) {
-        total_weight += iter->weight;
-    }
-    if (fabs(total_weight) < 1e-6) {
-        return tr("No options");
+    if (items.empty()) {
+        return tr("No options.\n");
     }
     weight.push_back(0.0);
-    for (auto iter = items.begin(); iter != items.end(); iter++) {
-        weight.push_back(iter->weight + weight.back());
+    if (is_weight_select) {
+        double total_weight = 0.0;
+        for (auto iter = items.begin(); iter != items.end(); iter++) {
+            total_weight += iter->weight;
+        }
+        for (auto iter = items.begin(); iter != items.end(); iter++) {
+            weight.push_back(iter->weight + weight.back());
+        }
+    } else {
+        for (int i = 1; i != items.size() + 1; i++) {
+            weight.push_back(i);
+        }
     }
     weight.erase(weight.cbegin());
     random_result = QRandomGenerator::global()->bounded(weight.back());
@@ -78,7 +88,9 @@ QString CItems::chooseOne()
             break;
         }
     }
-    this->adjustWeights(choice);
-    this->writeCsv();
+    if (is_dynamic_weight) {
+        adjustWeights(choice);
+        writeCsv();
+    }
     return items.at(choice).name;
 }

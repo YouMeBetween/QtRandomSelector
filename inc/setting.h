@@ -26,6 +26,8 @@ signals:
     void toMainMenu();
 
 private slots:
+    void weightSelectClicked();
+    void dynamicWeightClicked();
     void OKClicked();
 };
 

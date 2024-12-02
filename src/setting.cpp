@@ -8,6 +8,8 @@ CSetting::CSetting(QWidget *parent)
 {
     ui->setupUi(this);
 
+    connect(ui->qWeightSelectSwitchButton, &SwitchButton::sigSwitchChanged, this, &CSetting::weightSelectClicked);
+    connect(ui->qDynamicWeightSwitchButton, &SwitchButton::sigSwitchChanged, this, &CSetting::dynamicWeightClicked);
     connect(ui->qOKPushButton, &QPushButton::clicked, this, &CSetting::OKClicked);
 
     weightSelect = getItem(SETTING_JSON_PATH, "weightSelect") == "true";
@@ -20,6 +22,20 @@ CSetting::CSetting(QWidget *parent)
 CSetting::~CSetting()
 {
     delete ui;
+}
+
+void CSetting::weightSelectClicked()
+{
+    if (!ui->qWeightSelectSwitchButton->getSwitch() && ui->qDynamicWeightSwitchButton->getSwitch()) {
+        ui->qDynamicWeightSwitchButton->setSwitch(false);
+    }
+}
+
+void CSetting::dynamicWeightClicked()
+{
+    if (ui->qDynamicWeightSwitchButton->getSwitch() && !ui->qWeightSelectSwitchButton->getSwitch()) {
+        ui->qWeightSelectSwitchButton->setSwitch(true);
+    }
 }
 
 void CSetting::OKClicked()
