@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QTranslator>
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -19,10 +20,13 @@ public:
 
 private:
     Ui::MainWindow *ui;
+    QTranslator trans;
 
 private slots:
     void toMainMenu();
     void toResultShow(QString result);
     void toSetting();
+    void changeLanguage(bool isChinese);
+    void changeEvent(QEvent *e);
 };
 #endif // MAINWINDOW_H

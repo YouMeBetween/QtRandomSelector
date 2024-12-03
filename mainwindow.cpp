@@ -1,5 +1,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include "inc/filePath.h"
+#include "inc/jsonTool.h"
 #include "inc/mainMenu.h"
 #include "inc/resultShow.h"
 #include "inc/setting.h"
@@ -9,6 +11,9 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+
+    CJsonTool jsonTool;
+    changeLanguage(jsonTool.getItem(SETTING_JSON_PATH, "language") == "chinese");
 
     toMainMenu();
 }
@@ -41,5 +46,34 @@ void MainWindow::toSetting()
     CSetting *setting = new CSetting;
     setting->setAttribute(Qt::WA_DeleteOnClose);
     connect(setting, &CSetting::toMainMenu, this, &MainWindow::toMainMenu);
+    connect(setting, &CSetting::changeLanguage, this, &MainWindow::changeLanguage);
     setCentralWidget(setting);
+}
+
+void MainWindow::changeLanguage(bool isChinese)
+{
+    if (isChinese) {
+        if (!trans.load(":/trans/trans/chinese.qm")) {
+            return;
+        }
+    } else {
+        if (!trans.load(":/trans/trans/english.qm")) {
+            return;
+        }
+    }
+    qApp->installTranslator(&trans);
+}
+
+void MainWindow::changeEvent(QEvent *e)
+{
+    QWidget::changeEvent(e);
+    switch (e->type()) {
+        case QEvent::LanguageChange: {
+            ui->retranslateUi(this);
+            break;
+        }
+        default: {
+            break;
+        }
+    }
 }

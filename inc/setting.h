@@ -2,6 +2,7 @@
 #define _SETTING_H_
 
 #include "interfaceBase.h"
+#include <QTranslator>
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -21,14 +22,20 @@ private:
     Ui::qSettingWidget *ui;
     bool weightSelect;
     bool dynamicWeight;
+    bool language;
+    QTranslator trans;
 
 signals:
     void toMainMenu();
+    void changeLanguage(bool isChinese);
 
 private slots:
     void weightSelectClicked();
     void dynamicWeightClicked();
+    void chineseClicked();
+    void englishClicked();
     void OKClicked();
+    void changeEvent(QEvent *e);
 };
 
 #endif // _SETTING_H_

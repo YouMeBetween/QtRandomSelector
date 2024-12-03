@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/trans">
+        <file>trans/chinese.qm</file>
+        <file>trans/english.qm</file>
+    </qresource>
+</RCC>

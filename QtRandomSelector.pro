@@ -13,6 +13,7 @@ SOURCES += \
     mainwindow.cpp \
     src/interfaceBase.cpp \
     src/items.cpp \
+    src/jsonTool.cpp \
     src/mainMenu.cpp \
     src/resultShow.cpp \
     src/setting.cpp \
@@ -22,6 +23,7 @@ HEADERS += \
     inc/filePath.h \
     inc/interfaceBase.h \
     inc/items.h \
+    inc/jsonTool.h \
     inc/mainMenu.h \
     inc/resultShow.h \
     inc/setting.h \
@@ -39,8 +41,13 @@ qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
-RESOURCES +=
+RESOURCES += \
+    res/mainwindow.qrc
 
 DISTFILES += \
     cfg/cfg.csv \
     cfg/setting.json
+
+TRANSLATIONS += \
+    res/trans/english.ts \
+    res/trans/chinese.ts
