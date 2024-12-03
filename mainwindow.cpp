@@ -1,7 +1,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "inc/filePath.h"
-#include "inc/jsonTool.h"
+#include "inc/tool.h"
 #include "inc/mainMenu.h"
 #include "inc/resultShow.h"
 #include "inc/setting.h"
@@ -12,8 +12,8 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
 
-    CJsonTool jsonTool;
-    changeLanguage(jsonTool.getItem(SETTING_JSON_PATH, "language") == "chinese");
+    CTool tool;
+    changeLanguage(tool.getItem(SETTING_JSON_PATH, "language") == "chinese");
 
     toMainMenu();
 }

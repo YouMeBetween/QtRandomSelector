@@ -1,15 +1,15 @@
-#include "../inc/jsonTool.h"
+#include "../inc/tool.h"
 #include <QFile>
 #include <QJsonParseError>
 #include <QJsonObject>
 
-CJsonTool::CJsonTool(QWidget *parent)
+CTool::CTool(QWidget *parent)
     : QWidget(parent)
 {
     return;
 }
 
-QString CJsonTool::getItem(QString path, QString key)
+QString CTool::getItem(QString path, QString key)
 {
     QFile file(path);
     QString value;
@@ -30,7 +30,7 @@ QString CJsonTool::getItem(QString path, QString key)
     return jsonObject[key].toString();
 }
 
-void CJsonTool::setItem(QString path, QString key, QString value)
+void CTool::setItem(QString path, QString key, QString value)
 {
     QFile file(path), writeFile(path);
     QString element;

@@ -1,6 +1,6 @@
 #include "../inc/setting.h"
 #include "../inc/filePath.h"
-#include "../inc/jsonTool.h"
+#include "../inc/tool.h"
 #include "ui_setting.h"
 
 CSetting::CSetting(QWidget *parent)
@@ -16,11 +16,11 @@ CSetting::CSetting(QWidget *parent)
     connect(ui->qEnglishRadioButton, &QRadioButton::clicked, this, &CSetting::englishClicked);
     connect(ui->qOKPushButton, &QPushButton::clicked, this, &CSetting::OKClicked);
 
-    CJsonTool jsonTool;
+    CTool tool;
 
-    weightSelect = jsonTool.getItem(SETTING_JSON_PATH, "weightSelect") == "true";
-    dynamicWeight = jsonTool.getItem(SETTING_JSON_PATH, "dynamicWeight") == "true";
-    language = jsonTool.getItem(SETTING_JSON_PATH, "language") == "chinese";
+    weightSelect = tool.getItem(SETTING_JSON_PATH, "weightSelect") == "true";
+    dynamicWeight = tool.getItem(SETTING_JSON_PATH, "dynamicWeight") == "true";
+    language = tool.getItem(SETTING_JSON_PATH, "language") == "chinese";
 
     ui->qWeightSelectSwitchButton->setSwitch(weightSelect);
     ui->qDynamicWeightSwitchButton->setSwitch(dynamicWeight);
@@ -68,19 +68,19 @@ void CSetting::englishClicked()
 
 void CSetting::OKClicked()
 {
-    CJsonTool jsonTool;
+    CTool tool;
 
     if (weightSelect != ui->qWeightSelectSwitchButton->getSwitch()) {
-        jsonTool.setItem(SETTING_JSON_PATH, "weightSelect", !weightSelect ? "true" : "false");
+        tool.setItem(SETTING_JSON_PATH, "weightSelect", !weightSelect ? "true" : "false");
     }
     if (dynamicWeight != ui->qDynamicWeightSwitchButton->getSwitch()) {
-        jsonTool.setItem(SETTING_JSON_PATH, "dynamicWeight", !dynamicWeight ? "true" : "false");
+        tool.setItem(SETTING_JSON_PATH, "dynamicWeight", !dynamicWeight ? "true" : "false");
     }
     if (!language && ui->qChineseRadioButton->isChecked()) {
-        jsonTool.setItem(SETTING_JSON_PATH, "language", "chinese");
+        tool.setItem(SETTING_JSON_PATH, "language", "chinese");
         emit changeLanguage(true);
     } else if (language && ui->qEnglishRadioButton->isChecked()) {
-        jsonTool.setItem(SETTING_JSON_PATH, "language", "english");
+        tool.setItem(SETTING_JSON_PATH, "language", "english");
         emit changeLanguage(false);
     }
     emit toMainMenu();

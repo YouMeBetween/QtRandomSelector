@@ -1,6 +1,6 @@
 #include "../inc/items.h"
 #include "../inc/filePath.h"
-#include "../inc/jsonTool.h"
+#include "../inc/tool.h"
 #include <QFile>
 #include <QDebug>
 #include <QRandomGenerator>
@@ -61,9 +61,9 @@ QString CItems::chooseOne()
 {
     double random_result = 0.0;
     int choice = -1;
-    CJsonTool jsonTool;
-    bool is_weight_select = jsonTool.getItem(SETTING_JSON_PATH, "weightSelect") == "true";
-    bool is_dynamic_weight = jsonTool.getItem(SETTING_JSON_PATH, "dynamicWeight") == "true";
+    CTool tool;
+    bool is_weight_select = tool.getItem(SETTING_JSON_PATH, "weightSelect") == "true";
+    bool is_dynamic_weight = tool.getItem(SETTING_JSON_PATH, "dynamicWeight") == "true";
     QVector<double> weight;
     if (items.empty()) {
         return tr("No options.\n");

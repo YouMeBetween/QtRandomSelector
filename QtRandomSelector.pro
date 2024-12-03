@@ -13,21 +13,21 @@ SOURCES += \
     mainwindow.cpp \
     src/interfaceBase.cpp \
     src/items.cpp \
-    src/jsonTool.cpp \
     src/mainMenu.cpp \
     src/resultShow.cpp \
     src/setting.cpp \
-    src/switchButton.cpp
+    src/switchButton.cpp \
+    src/tool.cpp
 
 HEADERS += \
     inc/filePath.h \
     inc/interfaceBase.h \
     inc/items.h \
-    inc/jsonTool.h \
     inc/mainMenu.h \
     inc/resultShow.h \
     inc/setting.h \
     inc/switchButton.h \
+    inc/tool.h \
     mainwindow.h
 
 FORMS += \
