@@ -1,7 +1,7 @@
 #ifndef MAINMENU_H
 #define MAINMENU_H
 
-#include "interfaceBase.h"
+#include <QWidget>
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -9,7 +9,7 @@ class mainMenu;
 }
 QT_END_NAMESPACE
 
-class CMainMenu : public CInterfaceBase
+class CMainMenu : public QWidget
 {
     Q_OBJECT
 

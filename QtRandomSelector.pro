@@ -11,7 +11,6 @@ CONFIG += c++17
 SOURCES += \
     main.cpp \
     mainwindow.cpp \
-    src/interfaceBase.cpp \
     src/items.cpp \
     src/mainMenu.cpp \
     src/resultShow.cpp \
@@ -21,7 +20,6 @@ SOURCES += \
 
 HEADERS += \
     inc/filePath.h \
-    inc/interfaceBase.h \
     inc/items.h \
     inc/mainMenu.h \
     inc/resultShow.h \

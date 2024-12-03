@@ -4,7 +4,7 @@
 #include "ui_setting.h"
 
 CSetting::CSetting(QWidget *parent)
-    : CInterfaceBase(parent)
+    : QWidget(parent)
     , ui(new Ui::qSettingWidget)
 {
     ui->setupUi(this);
@@ -89,7 +89,7 @@ void CSetting::OKClicked()
 
 void CSetting::changeEvent(QEvent *e)
 {
-    CInterfaceBase::changeEvent(e);
+    QWidget::changeEvent(e);
     switch (e->type()) {
         case QEvent::LanguageChange: {
             ui->retranslateUi(this);

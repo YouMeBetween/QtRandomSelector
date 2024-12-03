@@ -1,7 +1,7 @@
 #ifndef _SETTING_H_
 #define _SETTING_H_
 
-#include "interfaceBase.h"
+#include <QWidget>
 #include <QTranslator>
 
 QT_BEGIN_NAMESPACE
@@ -10,7 +10,7 @@ class qSettingWidget;
 }
 QT_END_NAMESPACE
 
-class CSetting : public CInterfaceBase
+class CSetting : public QWidget
 {
     Q_OBJECT
 

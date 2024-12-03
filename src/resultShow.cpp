@@ -2,7 +2,7 @@
 #include "ui_resultShow.h"
 
 CResultShow::CResultShow(QString choice, QWidget *parent)
-    : CInterfaceBase(parent)
+    : QWidget(parent)
     , ui(new Ui::resultShow)
 {
     ui->setupUi(this);
