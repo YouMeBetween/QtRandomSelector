@@ -8,6 +8,7 @@ CMainMenu::CMainMenu(QWidget *parent)
     , ui(new Ui::mainMenu)
 {
     ui->setupUi(this);
+    setAttribute(Qt::WA_DeleteOnClose);
 
     connect(ui->start, &QPushButton::clicked, this, &CMainMenu::startChoose);
     connect(ui->qSettingPushButton, &QPushButton::clicked, this, &CMainMenu::settingClicked);

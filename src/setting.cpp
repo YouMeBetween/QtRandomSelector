@@ -7,6 +7,7 @@ CSetting::CSetting(QWidget *parent)
     , ui(new Ui::qSettingWidget)
 {
     ui->setupUi(this);
+    setAttribute(Qt::WA_DeleteOnClose);
 
     connect(ui->qWeightSelectSwitchButton, &SwitchButton::sigSwitchChanged, this, &CSetting::weightSelectClicked);
     connect(ui->qDynamicWeightSwitchButton, &SwitchButton::sigSwitchChanged, this, &CSetting::dynamicWeightClicked);

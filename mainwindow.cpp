@@ -26,7 +26,6 @@ MainWindow::~MainWindow()
 void MainWindow::toMainMenu()
 {
     CMainMenu *mainMenu = new CMainMenu;
-    mainMenu->setAttribute(Qt::WA_DeleteOnClose);
     connect(mainMenu, &CMainMenu::quitSignal, this, &MainWindow::close);
     connect(mainMenu, &CMainMenu::toResultShow, this, &MainWindow::toResultShow);
     connect(mainMenu, &CMainMenu::toSetting, this, &MainWindow::toSetting);
@@ -36,7 +35,6 @@ void MainWindow::toMainMenu()
 void MainWindow::toResultShow(QString result)
 {
     CResultShow *resultShow = new CResultShow(result);
-    resultShow->setAttribute(Qt::WA_DeleteOnClose);
     connect(resultShow, &CResultShow::toMainMenu, this, &MainWindow::toMainMenu);
     setCentralWidget(resultShow);
 }
@@ -44,7 +42,6 @@ void MainWindow::toResultShow(QString result)
 void MainWindow::toSetting()
 {
     CSetting *setting = new CSetting;
-    setting->setAttribute(Qt::WA_DeleteOnClose);
     connect(setting, &CSetting::toMainMenu, this, &MainWindow::toMainMenu);
     connect(setting, &CSetting::changeLanguage, this, &MainWindow::changeLanguage);
     setCentralWidget(setting);

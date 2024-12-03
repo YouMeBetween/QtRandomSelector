@@ -6,6 +6,7 @@ CResultShow::CResultShow(QString choice, QWidget *parent)
     , ui(new Ui::resultShow)
 {
     ui->setupUi(this);
+    setAttribute(Qt::WA_DeleteOnClose);
 
     connect(ui->qButtonOK, &QPushButton::clicked, this, &CResultShow::quit);
 
