@@ -1,5 +1,6 @@
 #include "../inc/setting.h"
 #include "../inc/filePath.h"
+#include "../inc/jsonTool.h"
 #include "ui_setting.h"
 
 CSetting::CSetting(QWidget *parent)
@@ -15,9 +16,11 @@ CSetting::CSetting(QWidget *parent)
     connect(ui->qEnglishRadioButton, &QRadioButton::clicked, this, &CSetting::englishClicked);
     connect(ui->qOKPushButton, &QPushButton::clicked, this, &CSetting::OKClicked);
 
-    weightSelect = getItem(SETTING_JSON_PATH, "weightSelect") == "true";
-    dynamicWeight = getItem(SETTING_JSON_PATH, "dynamicWeight") == "true";
-    language = getItem(SETTING_JSON_PATH, "language") == "chinese";
+    CJsonTool jsonTool;
+
+    weightSelect = jsonTool.getItem(SETTING_JSON_PATH, "weightSelect") == "true";
+    dynamicWeight = jsonTool.getItem(SETTING_JSON_PATH, "dynamicWeight") == "true";
+    language = jsonTool.getItem(SETTING_JSON_PATH, "language") == "chinese";
 
     ui->qWeightSelectSwitchButton->setSwitch(weightSelect);
     ui->qDynamicWeightSwitchButton->setSwitch(dynamicWeight);
@@ -65,17 +68,19 @@ void CSetting::englishClicked()
 
 void CSetting::OKClicked()
 {
+    CJsonTool jsonTool;
+
     if (weightSelect != ui->qWeightSelectSwitchButton->getSwitch()) {
-        setItem(SETTING_JSON_PATH, "weightSelect", !weightSelect ? "true" : "false");
+        jsonTool.setItem(SETTING_JSON_PATH, "weightSelect", !weightSelect ? "true" : "false");
     }
     if (dynamicWeight != ui->qDynamicWeightSwitchButton->getSwitch()) {
-        setItem(SETTING_JSON_PATH, "dynamicWeight", !dynamicWeight ? "true" : "false");
+        jsonTool.setItem(SETTING_JSON_PATH, "dynamicWeight", !dynamicWeight ? "true" : "false");
     }
     if (!language && ui->qChineseRadioButton->isChecked()) {
-        setItem(SETTING_JSON_PATH, "language", "chinese");
+        jsonTool.setItem(SETTING_JSON_PATH, "language", "chinese");
         emit changeLanguage(true);
     } else if (language && ui->qEnglishRadioButton->isChecked()) {
-        setItem(SETTING_JSON_PATH, "language", "english");
+        jsonTool.setItem(SETTING_JSON_PATH, "language", "english");
         emit changeLanguage(false);
     }
     emit toMainMenu();

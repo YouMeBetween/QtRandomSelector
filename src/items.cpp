@@ -1,5 +1,6 @@
 #include "../inc/items.h"
 #include "../inc/filePath.h"
+#include "../inc/jsonTool.h"
 #include <QFile>
 #include <QDebug>
 #include <QRandomGenerator>
@@ -30,7 +31,7 @@ void CItems::writeCsv()
     csv_data.close();
 }
 
-CItems::CItems(QWidget *parent) : CInterfaceBase(parent)
+CItems::CItems(QWidget *parent) : QWidget(parent)
 {
     QFile csv_data("../QtRandomSelector/cfg/cfg.csv");
     QString line;
@@ -60,8 +61,9 @@ QString CItems::chooseOne()
 {
     double random_result = 0.0;
     int choice = -1;
-    bool is_weight_select = getItem(SETTING_JSON_PATH, "weightSelect") == "true";
-    bool is_dynamic_weight = getItem(SETTING_JSON_PATH, "dynamicWeight") == "true";
+    CJsonTool jsonTool;
+    bool is_weight_select = jsonTool.getItem(SETTING_JSON_PATH, "weightSelect") == "true";
+    bool is_dynamic_weight = jsonTool.getItem(SETTING_JSON_PATH, "dynamicWeight") == "true";
     QVector<double> weight;
     if (items.empty()) {
         return tr("No options.\n");

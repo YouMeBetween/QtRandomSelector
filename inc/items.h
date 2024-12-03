@@ -1,7 +1,6 @@
 #ifndef _ITEMS_H_
 #define _ITEMS_H_
 
-#include "interfaceBase.h"
 #include <QWidget>
 #include <QString>
 #include <QVector>
@@ -12,7 +11,7 @@ typedef struct Item {
     Item() {}
 } Item;
 
-class CItems : public CInterfaceBase
+class CItems : public QWidget
 {
     Q_OBJECT
 
